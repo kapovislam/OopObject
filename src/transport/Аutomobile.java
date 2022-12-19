@@ -6,14 +6,8 @@ import validate.ValidateUtils;
 import java.time.LocalDate;
 import java.util.regex.Pattern;
 
-public class Аutomobile {
-    private final String brand;
-    private final String model;
+public class Аutomobile extends Transport {
     private double engineVolume;
-    private String color;
-    private final int year;
-    private final String country;
-
     private String transmission;
     private final String bodyType;
     private String registrationNumber;
@@ -67,43 +61,23 @@ public class Аutomobile {
         }
     }
 
-    public Аutomobile(String brand, String model, double engineVolume, String color, int year, String country, String transmission, String bodyType, String registrationNumber, int numberOfSeats, boolean isSummerRubber) {
-        this.brand = validateBrand(brand);
-        this.model = validateModel(model);
+    public Аutomobile(String brand, String model, int year, String country, String color, int maxSpeed, double engineVolume, String transmission, String bodyType, String registrationNumber, int numberOfSeats, boolean isSummerRubber) {
+        super(brand, model, year, country, color, maxSpeed);
         this.engineVolume = validateEngineVolume(engineVolume);
-        this.color = validateColor(color);
-        this.year = validateYear(year);
-        this.country = validateCountry(country);
         this.transmission = validateTransmission(transmission);
         this.bodyType = validateBodyType(bodyType);
         this.registrationNumber = validateRegistrationNumber(registrationNumber);
         this.numberOfSeats = validateNumberOfSeats(numberOfSeats);
         this.isSummerRubber = isSummerRubber;
+        this.key = key;
+        this.insurance = insurance;
     }
 
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
 
     public double getEngineVolume() {
         return engineVolume;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public String getCountry() {
-        return country;
-    }
 
     public String getTransmission() {
         return transmission;
@@ -129,9 +103,6 @@ public class Аutomobile {
         this.engineVolume = validateEngineVolume(engineVolume);
     }
 
-    public void setColor(String color) {
-        this.color = validateColor(color);
-    }
 
     public void setTransmission(String transmission) {
         this.transmission = validateTransmission(transmission);
@@ -171,12 +142,25 @@ public class Аutomobile {
         return ValidateUtils.validateString(value, "Белый");
     }
 
-    public static int validateYear(Integer value) {
+    public static Integer validateYear(Integer value) {
         return value == null || value <= 0 ? 2000 : value;
     }
 
     public static String validateCountry(String value) {
         return ValidateUtils.validateString(value, "Россия");
+    }
+
+    @Override
+    void refill(String fuel) {
+        System.out.println("Автомобиль будет заправлен " + validateRefill(fuel));
+    }
+
+    public static String validateRefill(String value) {
+        if (value.equals("electricity") || value.equals("petrol") || value.equals("diesel")) {
+            return value;
+        } else {
+            return "petrol";
+        }
     }
 
     public static String validateTransmission(String value) {
@@ -224,8 +208,8 @@ public class Аutomobile {
 
 
     public String toString() {
-        return brand + " " + model + " " + year + " год выпуска, сборка - "
-                + country + ", цвет кузова - " + color + ", объем двигателя — " + engineVolume + " л." + transmission + ", "
+        return getBrand() + " " + getModel() + " " + getYear() + " год выпуска, сборка - "
+                + getCountry() + ", цвет кузова - " + getColor() + ", объем двигателя — " + engineVolume + " л." + transmission + ", "
                 + bodyType + ", Количество мест " + registrationNumber + " " + key + " " + insurance;
     }
 
