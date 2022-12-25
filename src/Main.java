@@ -1,3 +1,5 @@
+import transport.Bus;
+import transport.Train;
 import transport.Аutomobile;
 
 import java.time.LocalDate;
@@ -36,7 +38,7 @@ public class Main {
         for (int i = 0; i < bouquet.length; i++) {
             if (bouquet != null && bouquet[i].getLifeSpan() < minLifeSpan) {
                 minLifeSpan = bouquet[i].getLifeSpan();
-                day=bouquet[i];
+                day = bouquet[i];
             }
         }
         return day.getLifeSpan();
@@ -69,15 +71,25 @@ public class Main {
          * Напишите программу, которая будет выводить в консоль информацию о каждом автомобиле
          * и все указанные выше характеристики
          */
-        Аutomobile lada = new Аutomobile("", "Granta", 1.7, "желтый", 2015, "Россия", "Ручная", "Седан", "к777кк077", 4, true);
+        Аutomobile lada = new Аutomobile("", "Granta", 2015, "Россия", "желтый", 180, 1.6, "Ручная", "", "к777кк077", 4, true);
         Аutomobile.Key ladaKey = lada.new Key(true, true);
         Аutomobile.Insurance ladaInsurance = lada.new Insurance(LocalDate.of(2023, 6, 25), 2500, "159425663");
-        Аutomobile audi = new Аutomobile("Audi ", "A8 50 L TDI quattro", 3.0, "черный", 2020, "Германия", "", "", "", 2, false);
-        Аutomobile bmw = new Аutomobile("BMW", "Z8", 3.0, "черный", 2021, null, "", "", "а155фы177", 5, true);
-        Аutomobile kia = new Аutomobile("Kia", "Sportage 4-го поколения", 2.4, "красный", 2018, "Южная Корея", "","","", 7, true);
-        Аutomobile hyundai = new Аutomobile("Hyundai", "Avante", 1.6, "оранжевый", 2016, "Южная Корея","  ", "","",  5, true);
+        Аutomobile audi = new Аutomobile("Audi ", "A8 50 L TDI quattro", 2021, "Германия", "черный", 260, 2.4, "", "", "а145рт123", 2, true);
+        Аutomobile bmw = new Аutomobile("BMW", "Z8", 2021, "", "", 320, 3.5, "", "Седан", "а145кт153", 4, true);
+        Аutomobile kia = new Аutomobile("Kia", "Sportage 4-го поколения", 2018, "Южная Корея", "", 280, 3.6, "", "", "а153рт177", 4, true);
+        Аutomobile hyundai = new Аutomobile("Hyundai", "Avante", 2016, "Южная Корея", "оранжевый", 240, 1.8, "", "", "а154рт178", 4, true);
         lada.setKey(ladaKey);
         lada.setInsurance(ladaInsurance);
+        Train train = new Train("Ласточка", "B-901", 2011, "Россия", "", 301, 3500, 2, "Белорусского", "Минск-Пассажирский", 11);
+        Train train1 = new Train("Ленинград", "D-125", 2019, "Россия", "", 270, 1700, 2, "Ленинградского", "Ленинград-Пассажирский", 8);
+        Bus bus = new Bus("Mercedes-Ben", "Sprinter", 2018, "Германия", "белый", 180);
+        Bus bus1 = new Bus("МАЗ", "МАЗ-232", 2016, "Россия", "желтый", 160);
+        Bus bus2 = new Bus("MAN", "Lion’s", 2020, "Германия", "черный", 220);
+        System.out.println(bus);
+        System.out.println(bus1);
+        System.out.println(bus2);
+        System.out.println(train);
+        System.out.println(train1);
         System.out.println(lada);
         System.out.println(audi);
         System.out.println(bmw);
